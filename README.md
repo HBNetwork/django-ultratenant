@@ -1,1 +1,1 @@
-# django-ultratenent
+# django-ultratenant
