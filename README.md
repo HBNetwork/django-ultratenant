@@ -1,44 +1,44 @@
 # django-ultratenant
 
 
-## Pitch
-- Parte 1: https://www.loom.com/share/a90948958c184a0fb64868bbb0230a28
-- Parte 2: https://www.loom.com/share/52fd66b6f5a047f88a9fed56c1cf70d1 
+## Pitch (Portuguese)
+- Part 1: https://www.loom.com/share/a90948958c184a0fb64868bbb0230a28
+- Part 2: https://www.loom.com/share/52fd66b6f5a047f88a9fed56c1cf70d1 
 
 
-## O que é?
+## What is
 
-- biblioteca multi-tenant do Django que implementa as principais abordagens
-- API simples e concisa - mínimo de configuração possivel
-- transparente para a aplicação
-- isolamentos suportados: multi-db, multi-schema e tenant-id
-- URL suportadas: subdomínio e path
+- Django multi-tenant library that implements diferent approachs
+- simple API with minimal setup
+- transparent for the application
+- suported isolations approachs: multi-db, multi-schema and tenant-id
+- supported URL approachs: subdomain and path
     - tenant.url.com
     - url.com/tenant/admin/
-- suporte a múltiplos bancos de dados
-- bem documentado
+- support to multiple database suporte
+- good documentation
 
 
-## Alternativas
+## Alternatives
 
-- https://github.com/django-tenants/django-tenants/ - só postgres e multi-schema
-- https://github.com/citusdata/django-multitenant - só postgres - usa um tal de Citus
+- https://github.com/django-tenants/django-tenants/ - only Postgres with multi-schema
+- https://github.com/citusdata/django-multitenant - only Postgres (with Citus extension)
 
 
-## Projetos base
+## Base projects
 
 - https://github.com/henriquebastos/pds-multi-tenant/
 - https://github.com/eli-junior/djangoDefault/
 
 
 ## MVP
-
-- setup e pip
-- suporte somente ao sqlite3
+- setup and pip
+- SQLite3 support
 - multi-db
-- tenant no path da URL
-- documentação como customizar o `manage.py`
-- custom [urls.py](http://urls.py/)
+- tenant on URL path
+- documetation about how customize `manage.py`
+- custom `urls.py`
+  * investigate if it's possible to change the settings.ROOT_URL to enable tenant without changing `urls.py`
 
 
 ## API
@@ -56,8 +56,7 @@ DATABASES = Databases(config('DATABASE_URL', cast=dburl))
 DATABASE_ROUTERS = ['ultratenants.multidb.Router']
 ```
 
-- Investigar possibilidade de alterar o ROOT_URL pra não precisar mexer no urls.py
-
+(maybe it won't be necessary)
 ```python
 # urls.py
 ...
@@ -74,10 +73,10 @@ urlpatterns = tenants_path([
 
 ## Roadmap
 
-- suporte aos dbs suportados pelo Django: [PostgreSQL](https://docs.djangoproject.com/en/4.0/ref/databases/#postgresql-notes), [MariaDB](https://docs.djangoproject.com/en/4.0/ref/databases/#mariadb-notes), [MySQL](https://docs.djangoproject.com/en/4.0/ref/databases/#mysql-notes), [Oracle](https://docs.djangoproject.com/en/4.0/ref/databases/#oracle-notes)
+- other databases supported by Django: [PostgreSQL](https://docs.djangoproject.com/en/4.0/ref/databases/#postgresql-notes), [MariaDB](https://docs.djangoproject.com/en/4.0/ref/databases/#mariadb-notes), [MySQL](https://docs.djangoproject.com/en/4.0/ref/databases/#mysql-notes), [Oracle](https://docs.djangoproject.com/en/4.0/ref/databases/#oracle-notes)
 - multi-schema
-- tenant no subdominio
+- tenant as subdomain
     - tenant.url.com/admin
 - tenant-id
-- customização do django cli `manage.py`
-- cookiecutter para criar um novo projeto
+- custom `manage.py` to access different tenants
+- cookiecutter to create a new project
