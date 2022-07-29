@@ -1,0 +1,1 @@
+## Rules to Contribuitors
