@@ -33,24 +33,9 @@ Installation
 
 How to Use
 ----------
+
 - TODO
 
-
-Contributing
-------------
-Contributions are welcome, feel free to open an Issue or Pull Request.
-
-Pull requests must be for the `develop` branch.
-
-.. code:: bash
-
-    git clone https://github.com/HBN3tw0rk/ultratenant
-    cd ultratenant
-    git checkout develop
-    python -m venv .venv
-    pip install -r requirements_dev.txt
-    pre-commit install
-    pytest
 
 
 Pitch (Portuguese)
