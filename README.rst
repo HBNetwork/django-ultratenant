@@ -89,6 +89,7 @@ API
 ---
 
 .. code:: python
+
     # settings.py
     from ultratenant.multidb import Databases
     ...
@@ -104,6 +105,7 @@ API
 (maybe it won't be necessary)
 
 .. code:: python
+
     # urls.py
     ...
     from ultimate_tenants.urls import tenants_path
