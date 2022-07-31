@@ -33,11 +33,11 @@ setup(
     long_description=readme + '\n\n' + history,
     include_package_data=True,
     keywords='ultratenant',
-    name='ultratenant',
+    name='django-ultratenant',
     packages=find_packages(include=['ultratenant', 'ultratenant.*']),
     test_suite='tests',
     tests_require=test_requirements,
-    url='https://github.com/HBN3tw0rk/ultratenant',
+    url='https://github.com/HBN3tw0rk/django-ultratenant',
     version='0.0.1',
     zip_safe=False,
 )

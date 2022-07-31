@@ -3,22 +3,22 @@ Django Ultratenant
 ==================
 
 
-.. image:: https://img.shields.io/pypi/v/ultratenant.svg
-        :target: https://pypi.python.org/pypi/ultratenant
+.. image:: https://img.shields.io/pypi/v/django-ultratenant.svg
+        :target: https://pypi.python.org/pypi/django-ultratenant
         :alt: PyPI
 
-.. image:: https://coveralls.io/repos/github/HBN3tw0rk/ultratenant/badge.svg?branch=master
-        :target: https://coveralls.io/github/HBN3tw0rk/ultratenant?branch=master
+.. image:: https://coveralls.io/repos/github/HBN3tw0rk/django-ultratenant/badge.svg?branch=master
+        :target: https://coveralls.io/github/HBN3tw0rk/django-ultratenant?branch=master
         :alt: Coverage Status
 
-.. image:: https://readthedocs.org/projects/ultratenant/badge/?version=latest
-        :target: https://ultratenant.readthedocs.io/en/latest/?version=latest
+.. image:: https://readthedocs.org/projects/django-ultratenant/badge/?version=latest
+        :target: https://django-ultratenant.readthedocs.io/en/latest/?version=latest
         :alt: Documentation Status
 
 Ultimate Django app for multi-tenant.
 
 
-* Documentation: https://ultratenant.readthedocs.io.
+* Documentation: https://django-ultratenant.readthedocs.io.
 
 
 Installation
@@ -26,7 +26,7 @@ Installation
 
 .. code:: bash
 
-    pip install ultratenant
+    pip install django-ultratenant
 
 
 
@@ -90,15 +90,15 @@ API
 
 .. code:: python
     # settings.py
-    from ultratenants.multidb import Databases
+    from ultratenant.multidb import Databases
     ...
     MIDDLEWARE = [
         ...
-        'ultratenants.path.Middleware',
+        'ultratenant.path.Middleware',
     ]
     ...
     DATABASES = Databases(config('DATABASE_URL', cast=dburl))
-    DATABASE_ROUTERS = ['ultratenants.multidb.Router']
+    DATABASE_ROUTERS = ['ultratenant.multidb.Router']
 
 
 (maybe it won't be necessary)

@@ -9,7 +9,7 @@ if "%SPHINXBUILD%" == "" (
 )
 set SOURCEDIR=.
 set BUILDDIR=_build
-set SPHINXPROJ=ultratenant
+set SPHINXPROJ=django-ultratenant
 
 if "%1" == "" goto help
 
