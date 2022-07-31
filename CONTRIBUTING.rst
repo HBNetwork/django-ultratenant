@@ -1,4 +1,4 @@
-Contribuition
+Contributing
 =============
 
 
