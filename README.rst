@@ -53,8 +53,8 @@ What is
 * transparent for the application
 * suported isolations approachs: multi-db, multi-schema and tenant-id
 * supported URL approachs: subdomain and path
-  * tenant.url.com
-  * url.com/tenant/admin/
+    * tenant.url.com
+    * url.com/tenant/admin/
 * support to multiple database suporte
 * good documentation
 
@@ -82,7 +82,7 @@ MVP
 * tenant on URL path
 * documetation about how customize manage.py
 * custom urls.py
-  * investigate if it's possible to change the settings.ROOT_URL to enable tenant without changing urls.py
+    * investigate if it's possible to change the settings.ROOT_URL to enable tenant without changing urls.py
 
 
 API
@@ -122,7 +122,7 @@ Roadmap
 * other databases supported by Django: PostgreSQL_, MariaDB_, MySQL_, Oracle_
 * multi-schema
 * tenant as subdomain
-  * tenant.url.com/admin
+    * tenant.url.com/admin
 * tenant-id
 * custom `manage.py` to access different tenants
 * cookiecutter to create a new project
