@@ -11,21 +11,21 @@ repos:
     - id: mixed-line-ending
     - id: requirements-txt-fixer
     - id: trailing-whitespace
+- repo: https://github.com/timothycrosley/isort
+  rev: 5.10.1
+  hooks:
+    - id: isort
+- repo: https://github.com/psf/black
+  rev: stable
+  hooks:
+  - id: black
+    language_version: python3.10
+    description: "Black: The uncompromising Python code formatter"
+    require_serial: true
+    types_or: [ python, pyi ]
+    args: ["--line-length=120"]
 - repo: https://gitlab.com/pycqa/flake8
   rev: 4.0.1
   hooks:
     - id: flake8
       exclude: 'docs/'
-- repo: https://github.com/timothycrosley/isort
-  rev: 5.10.1
-  hooks:
-    - id: isort
--   repo: https://github.com/psf/black
-    rev: stable
-    hooks:
-    - id: black
-      language_version: python3.10
-      description: "Black: The uncompromising Python code formatter"
-      require_serial: true
-      types_or: [ python, pyi ]
-      args: ["--line-length=120"]
