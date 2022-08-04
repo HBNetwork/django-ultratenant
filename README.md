@@ -1,6 +1,5 @@
----
-title: Django Ultratenant
----
+# Django Ultratenant
+
 
 [![PyPI](https://img.shields.io/pypi/v/django-ultratenant.svg)](https://pypi.python.org/pypi/django-ultratenant)
 
@@ -14,7 +13,7 @@ Ultimate Django app for multi-tenant.
 
 # Installation
 
-``` {.bash}
+``` bash
 pip install django-ultratenant
 ```
 
@@ -39,12 +38,9 @@ pip install django-ultratenant
 
 -   suported isolations approachs: multi-db, multi-schema and tenant-id
 
--
-
-    supported URL approachs: subdomain and path
-
-    :   -   tenant.url.com
-        -   url.com/tenant/admin/
+- supported URL approachs: subdomain and path
+    * tenant.url.com
+    * url.com/tenant/admin/
 
 -   support to multiple database suporte
 
@@ -74,16 +70,11 @@ pip install django-ultratenant
 
 -   documetation about how customize manage.py
 
--
 
-    custom urls.py
-
-    :   -   investigate if it\'s possible to change the
-            settings.ROOT_URL to enable tenant without changing urls.py
 
 # API
 
-``` {.python}
+```python
 # settings.py
 from ultratenant.multidb import Databases
 ...
@@ -98,7 +89,7 @@ DATABASE_ROUTERS = ['ultratenant.multidb.Router']
 
 (maybe it won\'t be necessary)
 
-``` {.python}
+```python
 # urls.py
 ...
 from ultimate_tenants.urls import tenants_path
@@ -120,12 +111,6 @@ urlpatterns = tenants_path([
     [Oracle](https://docs.djangoproject.com/en/4.0/ref/databases/#oracle-notes)
 
 -   multi-schema
-
--
-
-    tenant as subdomain
-
-    :   -   tenant.url.com/admin
 
 -   tenant-id
 

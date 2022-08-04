@@ -1,7 +1,5 @@
 from threading import local
 
-from loguru import logger
-
 from .utils import tenant_db_from_request
 
 THREAD_LOCAL = local()
@@ -18,11 +16,8 @@ class TenantMiddleware:
 
 
 def get_current_db_name():
-    current_db = getattr(THREAD_LOCAL, "DB", None)
-    logger.info(f"DB Called: {current_db or 'Default'}")
-    return current_db
+    return getattr(THREAD_LOCAL, "DB", None)
 
 
 def set_db_for_router(db):
-    logger.info(f"DB routed to {db}")
     setattr(THREAD_LOCAL, "DB", db)
