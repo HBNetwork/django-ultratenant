@@ -5,15 +5,7 @@ class TenantLocal(threading.local):
     UNDEFINED = ""
 
     def __init__(self):
-        self._tenant = self.UNDEFINED
-
-    @property
-    def tenant(self):
-        return self._tenant
-
-    @tenant.setter
-    def tenant(self, name):
-        self._tenant = name
+        self.tenant = self.UNDEFINED
 
     def reset(self):
         self.tenant = self.UNDEFINED
