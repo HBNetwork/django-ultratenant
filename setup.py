@@ -2,10 +2,12 @@
 
 """The setup script."""
 
-
 import pathlib
 
 from setuptools import find_packages, setup
+
+with open("README.rst") as readme_file:
+    readme = readme_file.read()
 
 readme = pathlib.Path("README.md").read_text()
 requirements = ["dj-database-url>=1.0.0", "python-decouple>=3.6"]
@@ -18,7 +20,7 @@ setup(
     classifiers=[
         "Development Status :: 2 - Pre-Alpha",
         "Intended Audience :: Developers",
-        "License :: OSI Approved :: GNU Lesser General Public License v2 (LGPLv2)",
+        "License :: OSI Approved :: MIT License",
         "Natural Language :: English",
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.6",
@@ -27,7 +29,7 @@ setup(
     ],
     description="Ultimate Django app for multi-tenant.",
     install_requires=requirements,
-    license="GNU Lesser General Public License v2.1",
+    license="MIT license",
     long_description=readme,
     include_package_data=True,
     keywords="ultratenant",
