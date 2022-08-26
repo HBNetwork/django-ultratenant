@@ -3,7 +3,6 @@ from pathlib import Path
 
 from decouple import config
 from dj_database_url import parse
-from loguru import logger
 
 DEBUG = config("DEBUG", default=False, cast=bool)
 BASE_DIR = Path(".")
@@ -19,13 +18,15 @@ class DatabaseMapper(dict):
     @property
     def __convert(self):
         if DEBUG:
-            self.cache["default"] = parse("sqlite:///" + str(Path.joinpath(BASE_DIR, "default.sqlite3").resolve()))
+            self.cache["default"] = parse(
+                "sqlite:///" + str(Path.joinpath(BASE_DIR, "default.sqlite3").resolve())
+            )
         if not self.__conn:
             return
         try:
             tenants = json.loads(self.__conn)
         except Exception as e:
-            raise ValueError("Não consegui ler a string de conexão") from e
+            raise ValueError("Could not read connection string") from e
 
         for k, v in tenants.items():
             _key = k.split(".")[0].lower()
@@ -62,7 +63,6 @@ class TenantsMapper:
         try:
             tenants = json.loads(self.__tenants)
         except Exception:
-            logger.info("Não consegui ler a string dos tenants")
             return
         self.__cache = dict(tenants.items())
 
