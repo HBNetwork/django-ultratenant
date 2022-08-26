@@ -1,34 +1,13 @@
 # Django Ultratenant
 
-
-[![PyPI](https://img.shields.io/pypi/v/django-ultratenant.svg)](https://pypi.python.org/pypi/django-ultratenant)
-
-[![Coverage Status](https://coveralls.io/repos/github/HBN3tw0rk/django-ultratenant/badge.svg?branch=master)](https://coveralls.io/github/HBN3tw0rk/django-ultratenant?branch=master)
-
-[![Documentation Status](https://readthedocs.org/projects/django-ultratenant/badge/?version=latest)](https://django-ultratenant.readthedocs.io/en/latest/?version=latest)
-
-Ultimate Django app for multi-tenant.
-
--   Documentation: <https://django-ultratenant.readthedocs.io>.
-
-# Installation
-
-``` bash
-pip install django-ultratenant
-```
-
-# How to Use
-
--   TODO
-
-# Pitch (Portuguese)
+## Pitch (Portuguese)
 
 -   Part 1:
     <https://www.loom.com/share/a90948958c184a0fb64868bbb0230a28>
 -   Part 2:
     <https://www.loom.com/share/52fd66b6f5a047f88a9fed56c1cf70d1>
 
-# What is
+## What is
 
 -   Django multi-tenant library that implements diferent approachs
 
@@ -46,7 +25,64 @@ pip install django-ultratenant
 
 -   good documentation
 
-# Alternatives
+## Contributing
+
+### Rules to contribute
+
+#### Clone the code
+
+```bash
+git clone https://github.com/HBN3tw0rk/django-ultratenant
+cd django-ultratenant
+git checkout main
+```
+
+#### Setup the project
+
+```bash
+python -m venv .venv
+pip install -r requirements_dev.txt
+pre-commit install
+pre-commit autoupdate
+pytest
+```
+
+#### Create a new branch
+
+```bash
+git fetch origin
+git checkout -b task/branch-name-you-work-issue
+```
+
+
+
+
+#### Create a pull request to the branch *main*
+
+
+[![PyPI](https://img.shields.io/pypi/v/django-ultratenant.svg)](https://pypi.python.org/pypi/django-ultratenant)
+
+[![Coverage Status](https://coveralls.io/repos/github/HBN3tw0rk/django-ultratenant/badge.svg?branch=master)](https://coveralls.io/github/HBN3tw0rk/django-ultratenant?branch=master)
+
+[![Documentation Status](https://readthedocs.org/projects/django-ultratenant/badge/?version=latest)](https://django-ultratenant.readthedocs.io/en/latest/?version=latest)
+
+Ultimate Django app for multi-tenant.
+
+-   Documentation: <https://django-ultratenant.readthedocs.io>.
+
+## Installation
+
+``` bash
+pip install django-ultratenant
+```
+
+## How to Use
+
+-   TODO
+
+
+
+## Alternatives
 
 -   <https://github.com/django-tenants/django-tenants/> - only Postgres
     with multi-schema
@@ -117,3 +153,16 @@ urlpatterns = tenants_path([
 -   custom [manage.py]{.title-ref} to access different tenants
 
 -   cookiecutter to create a new project
+
+## Changelog
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/pt-BR/0.3.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [Unreleased]
+
+### [0.0.1] - 2022-07-31
+#### Added
+- First release on PyPI.
+

@@ -18,7 +18,9 @@ class DatabaseMapper(dict):
     @property
     def __convert(self):
         if DEBUG:
-            self.cache["default"] = parse("sqlite:///" + str(Path.joinpath(BASE_DIR, "default.sqlite3").resolve()))
+            self.cache["default"] = parse(
+                "sqlite:///" + str(Path.joinpath(BASE_DIR, "default.sqlite3").resolve())
+            )
         if not self.__conn:
             return
         try:
@@ -61,7 +63,6 @@ class TenantsMapper:
         try:
             tenants = json.loads(self.__tenants)
         except Exception:
-            print("I couldn't read the tenants string")
             return
         self.__cache = dict(tenants.items())
 
