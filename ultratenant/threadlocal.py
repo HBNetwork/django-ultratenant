@@ -2,7 +2,7 @@ import threading
 
 
 class TenantLocal(threading.local):
-    UNDEFINED = ""
+    UNDEFINED = 0
 
     def __init__(self):
         self._tenant = self.UNDEFINED
