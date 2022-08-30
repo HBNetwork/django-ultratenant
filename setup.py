@@ -2,15 +2,15 @@
 
 """The setup script."""
 
+import pathlib
+
 from setuptools import find_packages, setup
 
 with open("README.rst") as readme_file:
     readme = readme_file.read()
 
-with open("CHANGELOG.rst") as history_file:
-    history = history_file.read()
-
-requirements = []
+readme = pathlib.Path("README.md").read_text()
+requirements = ["dj-database-url>=1.0.0", "python-decouple>=3.6"]
 
 test_requirements = ["pytest"]
 
@@ -30,7 +30,7 @@ setup(
     description="Ultimate Django app for multi-tenant.",
     install_requires=requirements,
     license="MIT license",
-    long_description=readme + "\n\n" + history,
+    long_description=readme,
     include_package_data=True,
     keywords="ultratenant",
     name="django-ultratenant",
