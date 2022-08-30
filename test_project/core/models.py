@@ -1,6 +1,6 @@
 from django.db import models
 
-from ultratenant.singledb import TenantAwareAbstract
+from ultratenant.singledb import TenantAbstract, TenantAwareAbstract
 
 
 class TenantAware(TenantAwareAbstract):
@@ -13,11 +13,8 @@ class TenantAware(TenantAwareAbstract):
         abstract = True
 
 
-class Tenant(models.Model):
-    slug = models.SlugField(unique=True)
-
-    def __str__(self):
-        return self.slug
+class Tenant(TenantAbstract):
+    pass
 
 
 class MyModel(TenantAware):
