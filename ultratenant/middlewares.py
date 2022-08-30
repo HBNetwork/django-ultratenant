@@ -1,23 +1,36 @@
-from threading import local
-
-from .utils import tenant_db_from_request
-
-THREAD_LOCAL = local()
+from ultratenant.threadlocal import TENANTLOCAL
 
 
-class TenantMiddleware:
+class BaseTenantMiddleware:
     def __init__(self, get_response):
         self.get_response = get_response
 
     def __call__(self, request):
-        db = tenant_db_from_request(request)
-        setattr(THREAD_LOCAL, "DB", db)
+        TENANTLOCAL.tenant = self.identify_tenant(request)
         return self.get_response(request)
 
+    @staticmethod
+    def identify_tenant(request):
+        raise NotImplementedError
 
-def get_current_db_name():
-    return getattr(THREAD_LOCAL, "DB", None)
+
+class SubdomainTenantMiddleware(BaseTenantMiddleware):
+    @staticmethod
+    def identify_tenant(request):
+        host = request.get_host()
+        subdomain = host.split(".")[0]
+        return subdomain
 
 
-def set_db_for_router(db):
-    setattr(THREAD_LOCAL, "DB", db)
+class DomainTenantMiddleware(BaseTenantMiddleware):
+    @staticmethod
+    def identify_tenant(request):
+        return request.get_host()
+
+
+class PathTenantMiddleware(BaseTenantMiddleware):
+    @staticmethod
+    def identify_tenant(request):
+        tenant, path = request.path_info[1:].split("/", 1)
+        request.path_info = "/" + path
+        return tenant

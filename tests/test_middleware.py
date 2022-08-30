@@ -1,4 +1,4 @@
-from ultratenant.middleware import (
+from ultratenant.middlewares import (
     TENANTLOCAL,
     BaseTenantMiddleware,
     DomainTenantMiddleware,
