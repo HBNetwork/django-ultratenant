@@ -1,53 +1,59 @@
-from django.conf import settings
+from pathlib import Path
 
-from ultratenant.database import TenantRouter
-from ultratenant.multidb import SQLiteMapper
+import pytest
+from django.apps import apps
+from django.test import TestCase, override_settings
+
+from ultratenant.multidb import SQLiteMapper, TenantRouter
 from ultratenant.threadlocal import TENANTLOCAL
 
 
-def test_init():
-    default = {"test": True}
+@pytest.mark.django_db
+@override_settings(DATABASE_ROUTERS=["ultratenant.multidb.TenantRouter"])
+class TestMultiDb(TestCase):
+    databases = ["t1", "t2"]
 
-    mapper = SQLiteMapper(default)
+    def test_asdf(self):
+        MyModel = apps.get_model("multidb", "MyModel")
+        TENANTLOCAL.tenant = "t1"
+        m1 = MyModel.objects.create(name="Arnaldinho")
+        TENANTLOCAL.tenant = "t2"
+        m2 = MyModel.objects.create(name="Boris")
 
-    assert mapper["tenant"] == {
-        **default,
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": str(settings.BASE_DIR / "tenant.db.sqlite3"),
-    }
+        TENANTLOCAL.tenant = "t1"
+        assert list(MyModel.objects.all()) == [m1]
 
-
-def test_get():
-    mapper = SQLiteMapper({})
-
-    assert mapper["tenant"] == {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": str(settings.BASE_DIR / "tenant.db.sqlite3"),
-    }
-    assert mapper["tenant2"] == {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": str(settings.BASE_DIR / "tenant2.db.sqlite3"),
-    }
+        TENANTLOCAL.tenant = "t2"
+        assert list(MyModel.objects.all()) == [m2]
 
 
-def test_contains():
-    mapper = SQLiteMapper({})
+class TestSQLiteMapper:
+    def test_getitem(self):
+        mapper = SQLiteMapper(path=Path("/"), test=True)
 
-    assert "tenant" in mapper
-    assert "whatever" in mapper
+        expected = {
+            "test": True,
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": "/tenant.db.sqlite3",
+        }
 
+        assert mapper["tenant"] == expected
 
-def test_router_and_mapper():
-    TENANTLOCAL.tenant = "TENANT"
+    def test_contains(self):
+        mapper = SQLiteMapper(Path("/"))
 
-    router = TenantRouter()
-    mapper = SQLiteMapper({})
+        assert "tenant" in mapper
+        assert "whatever" in mapper
 
-    assert mapper[router.db_for_read()] == {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": str(settings.BASE_DIR / "TENANT.db.sqlite3"),
-    }
-    assert mapper[router.db_for_write()] == {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": str(settings.BASE_DIR / "TENANT.db.sqlite3"),
-    }
+    def test_router_and_mapper(self):
+        TENANTLOCAL.tenant = "t1"
+
+        router, mapper = TenantRouter(), SQLiteMapper(Path("/"))
+
+        expected = {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": "/t1.db.sqlite3",
+        }
+
+        assert mapper[router.db_for_read()] == expected
+        assert mapper[router.db_for_write()] == expected

@@ -1,12 +1,5 @@
-import pytest
-
-from ultratenant.database import TenantRouter
+from ultratenant.multidb import TenantRouter
 from ultratenant.threadlocal import TENANTLOCAL
-
-
-@pytest.fixture(autouse=True)
-def reset_thread():
-    TENANTLOCAL.reset()
 
 
 def test_db_for_read():
