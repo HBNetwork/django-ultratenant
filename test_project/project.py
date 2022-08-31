@@ -18,6 +18,11 @@ def configure(**kwargs):
             "t1": config("DATABASE_URL", default="sqlite://:memory:", cast=dburl),
             "t2": config("DATABASE_URL", default="sqlite://:memory:", cast=dburl),
         },
+        # DATABASES=DatabaseMapper(
+        #     default="sqlite://:memory:",
+        #     t1="sqlite://:memory:",
+        #     t2="sqlite://:memory:"
+        # ),
         **kwargs
     )
     return settings.configure(**params)
