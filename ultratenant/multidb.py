@@ -1,4 +1,17 @@
+from django.db import models
+
 from ultratenant.threadlocal import TENANTLOCAL
+
+
+class TenantAbstract(models.Model):
+    key = models.CharField(max_length=32, unique=True, db_index=True)
+    dburl = models.URLField()
+
+    class Meta:
+        abstract = True
+
+    def __str__(self):
+        return self.key
 
 
 class SQLiteMapper(dict):
