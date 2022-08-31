@@ -5,7 +5,7 @@ from ultratenant.singledb import TenantAbstract, TenantAwareAbstract
 
 class TenantAware(TenantAwareAbstract):
     # TODO(hb): Tem que ter um jeito de apenas implementar um método.
-    TENANT_MODEL = "core.Tenant"
+    TENANT_MODEL = "singledb.Tenant"
 
     tenant = models.ForeignKey(TENANT_MODEL, models.CASCADE)
 

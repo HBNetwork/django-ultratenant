@@ -12,7 +12,7 @@ def configure(**kwargs):
         SECRET_KEY=config("SECRET_KEY", default="SECRET"),
         ROOT_URLCONF=__name__,
         DEFAULT_AUTO_FIELD="django.db.models.AutoField",
-        INSTALLED_APPS=["test_project.core", "test_project.multidb"],
+        INSTALLED_APPS=["test_project.singledb", "test_project.multidb"],
         DATABASES={
             "default": config("DATABASE_URL", default="sqlite://:memory:", cast=dburl),
             "t1": config("DATABASE_URL", default="sqlite://:memory:", cast=dburl),
