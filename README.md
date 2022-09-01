@@ -2,28 +2,31 @@
 
 ## Pitch (Portuguese)
 
--   Part 1:
+- Part 1:
     <https://www.loom.com/share/a90948958c184a0fb64868bbb0230a28>
--   Part 2:
+- Part 2:
     <https://www.loom.com/share/52fd66b6f5a047f88a9fed56c1cf70d1>
 
 ## What is
 
--   Django multi-tenant library that implements diferent approachs
+- Django multi-tenant library that implements diferent approaches
 
--   simple API with minimal setup
+- Simple API with minimal setup
 
--   transparent for the application
+- Transparent for the application
 
--   suported isolations approachs: multi-db, multi-schema and tenant-id
+- Supported isolations approaches:
+    - multi-db
+    - multi-schema
+    - tenant-id
 
-- supported URL approachs: subdomain and path
-    * tenant.url.com
-    * url.com/tenant/admin/
+- Supported URL approaches: subdomain and path
+    - tenant.url.com
+    - url.com/tenant/admin/
 
--   support to multiple database suporte
+- Support multiple databases
 
--   good documentation
+- Good documentation
 
 ## Contributing
 
@@ -37,10 +40,20 @@ cd django-ultratenant
 git checkout main
 ```
 
+Or
+
+```bash
+git clone git@github.com:HBN3tw0rk/django-ultratenant.git
+cd django-ultratenant
+git checkout main
+```
+
 #### Setup the project
 
 ```bash
 python -m venv .venv
+source .venv/bin/activate
+pip install -U pip
 pip install -r requirements_dev.txt
 pre-commit install
 pre-commit autoupdate
@@ -165,4 +178,3 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### [0.0.1] - 2022-07-31
 #### Added
 - First release on PyPI.
-

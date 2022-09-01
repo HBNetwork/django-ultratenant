@@ -1,5 +1,6 @@
 import pytest
-from threadlocal import TENANTLOCAL
+
+from ultratenant.threadlocal import TENANTLOCAL
 
 
 @pytest.hookimpl(tryfirst=True)
