@@ -1,34 +1,12 @@
 from pathlib import Path
 
-from dj_database_url import parse as dburl
 from django.apps import apps
 from django.test import TestCase
 
-from ultratenant.multidb import SQLiteMapper, TenantRouter
+from ultratenant.multidb import DatabaseMapper, SQLiteMapper, TenantRouter
 from ultratenant.threadlocal import TENANTLOCAL
 
 PATH = Path(__file__).parent
-
-
-class DatabaseMapper(dict):
-    def __init__(self, default, **others):
-        self.cache = {"default": dburl(default)}
-        self.cache.update({k: dburl(v) for k, v in others.items()})
-
-    def __getitem__(self, key):
-        if key not in self.cache:
-            self.cache[key] = dburl(self.load_dburl(key))
-
-        return self.cache[key]
-
-    def __contains__(self, key):
-        return True
-
-    @staticmethod
-    def load_dburl(key):
-        Tenant = apps.get_model("multidb", "Tenant")
-        t = Tenant.objects.get(key=key)
-        return t.dburl
 
 
 class TestDatabaseMapper(TestCase):
