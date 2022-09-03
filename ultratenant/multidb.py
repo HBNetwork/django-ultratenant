@@ -37,30 +37,6 @@ class DatabaseMapper(dict):
         return t.dburl
 
 
-class SQLiteMapper(dict):
-    ENGINE = "django.db.backends.sqlite3"
-
-    def __init__(self, path, inmemory=False, **default):
-        self.path = path
-        self.inmemory = inmemory
-        self.cache = {"default": default}
-
-    def name(self, tenant_key):
-        return str(self.path / f"{tenant_key}.db.sqlite3")
-
-    def __getitem__(self, tenant):
-        if tenant not in self.cache:
-            self.cache[tenant] = {
-                **self.cache["default"],
-                "ENGINE": self.ENGINE,
-                "NAME": self.name(tenant),
-            }
-        return self.cache[tenant]
-
-    def __contains__(self, tenant):
-        return True
-
-
 class TenantRouter:
     def db_for_read(self, *args, **hints):
         return TENANTLOCAL.tenant
