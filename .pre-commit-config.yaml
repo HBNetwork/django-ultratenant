@@ -20,7 +20,7 @@ repos:
   rev: 22.8.0
   hooks:
   - id: black
-    language_version: python3.10
+    exclude: 'docs/'
     description: "Black: The uncompromising Python code formatter"
     require_serial: true
     types: [python]
