@@ -1,20 +1,13 @@
 from django.db import models
 
-from ultratenant.singledb import TenantAbstract, TenantAwareAbstract
-
-
-class TenantAware(TenantAwareAbstract):
-    # TODO(hb): Tem que ter um jeito de apenas implementar um método.
-    TENANT_MODEL = "singledb.Tenant"
-
-    tenant = models.ForeignKey(TENANT_MODEL, models.CASCADE)
-
-    class Meta:
-        abstract = True
+from ultratenant.singledb import TenantAbstract, TenantAwareFactory
 
 
 class Tenant(TenantAbstract):
     pass
+
+
+TenantAware = TenantAwareFactory("singledb.Tenant")
 
 
 class MyModel(TenantAware):
