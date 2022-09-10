@@ -2,6 +2,8 @@ from django.db import models
 
 from ultratenant.threadlocal import TENANTLOCAL
 
+DEFAULT_TENANT = "ultratenant.Tenant"
+
 
 class TenantAbstract(models.Model):
     key = models.CharField(max_length=32, unique=True, db_index=True)
@@ -18,17 +20,21 @@ class TenantAwareManager(models.Manager):
         return super().get_queryset().filter(tenant__key=TENANTLOCAL.tenant)
 
 
-class TenantAwareAbstract(models.Model):
-    """
-    An abstract base class model that provides a foreign key to a tenant
-    """
+def TenantAwareFactory(tenant_model):
+    class TenantAwareAbstract(models.Model):
+        """
+        An abstract base class model that provides a foreign key to a tenant
+        """
 
-    TENANT_MODEL = ""  # TODO(hb): Tem que ver isso aqui.
+        tenant = models.ForeignKey(tenant_model, models.CASCADE)
 
-    tenant = models.ForeignKey(TENANT_MODEL, models.CASCADE)
+        objects = TenantAwareManager()
+        unscoped = models.Manager()
 
-    objects = TenantAwareManager()
-    unscoped = models.Manager()
+        class Meta:
+            abstract = True
 
-    class Meta:
-        abstract = True
+    return TenantAwareAbstract
+
+
+TenantAwareAbstract = TenantAwareFactory(DEFAULT_TENANT)
