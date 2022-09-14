@@ -54,7 +54,7 @@ git checkout main
 python -m venv .venv
 source .venv/bin/activate
 pip install -U pip
-pip install -r requirements_dev.txt
+pip install ".[test]"
 pre-commit install
 pre-commit autoupdate
 pytest

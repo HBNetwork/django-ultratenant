@@ -31,18 +31,16 @@ dependencies = [
 
 [project.optional-dependencies]
 test = [
-  "pytest < 5.0.0",
-  "pytest-cov[all]",
-  "coverage==6.4.2",
-  "coveralls==3.3.1",
-  "flake8==5.0.0",
-  "pre-commit==2.20.0",
-  "pytest==7.1.2",
-  "pytest-cov==3.0.0",
-  "pytest-django==4.5.2",
-  "pytest-mock==3.8.2",
-  "python-decouple==3.6",
-  "tox==3.25.1",
+  "coverage",
+  "coveralls",
+  "flake8",
+  "pre-commit",
+  "pytest",
+  "pytest-cov",
+  "pytest-django",
+  "pytest-mock",
+  "python-decouple",
+  "tox",
 ]
 build = [
   "flit>=3.4"
