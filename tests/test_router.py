@@ -28,7 +28,3 @@ def test_allow_migrate():
     router = TenantRouter()
 
     assert router.allow_migrate() is True
-
-
-def test_fail():
-    assert False
