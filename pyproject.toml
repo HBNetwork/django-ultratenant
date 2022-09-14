@@ -59,7 +59,7 @@ exclude = ["contrib", "docs", "pytest.ini", "tox.ini", "test*"]
 
 
 [project.urls]
-#homepage = "https://github.com/HBN3tw0rk/django-ultratenant"
-documentation = "https://github.com/HBN3tw0rk/django-ultratenant/README.md"
-repository = "https://github.com/HBN3tw0rk/django-ultratenant"
-#changelog = "https://github.com/HBN3tw0rk/django-ultratenant/CHANGELOG.md"
+#homepage = "https://github.com/HBNetwork/django-ultratenant"
+documentation = "https://github.com/HBNetwork/django-ultratenant/README.md"
+repository = "https://github.com/HBNetwork/django-ultratenant"
+#changelog = "https://github.com/HBNetwork/django-ultratenant/CHANGELOG.md"

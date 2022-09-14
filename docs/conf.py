@@ -48,8 +48,8 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'Django Ultratenant'
-copyright = "2022, HBN3tw0rk"
-author = "HBN3tw0rk"
+copyright = "2022, HBNetwork"
+author = "HBNetwork"
 
 # The version info for the project you're documenting, acts as replacement
 # for |version| and |release|, also used in various other places throughout
@@ -130,7 +130,7 @@ latex_elements = {
 latex_documents = [
     (master_doc, 'django-ultratenant.tex',
      'Django Ultratenant Documentation',
-     'HBN3tw0rk', 'manual'),
+     'HBNetwork', 'manual'),
 ]
 
 

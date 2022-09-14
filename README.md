@@ -35,7 +35,7 @@
 #### Clone the code
 
 ```bash
-git clone https://github.com/HBN3tw0rk/django-ultratenant
+git clone https://github.com/HBNetwork/django-ultratenant
 cd django-ultratenant
 git checkout main
 ```
@@ -43,7 +43,7 @@ git checkout main
 Or
 
 ```bash
-git clone git@github.com:HBN3tw0rk/django-ultratenant.git
+git clone git@github.com:HBNetwork/django-ultratenant.git
 cd django-ultratenant
 git checkout main
 ```
@@ -75,7 +75,7 @@ git checkout -b task/branch-name-you-work-issue
 
 [![PyPI](https://img.shields.io/pypi/v/django-ultratenant.svg)](https://pypi.python.org/pypi/django-ultratenant)
 
-[![Coverage Status](https://coveralls.io/repos/github/HBN3tw0rk/django-ultratenant/badge.svg?branch=master)](https://coveralls.io/github/HBN3tw0rk/django-ultratenant?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/HBNetwork/django-ultratenant/badge.svg?branch=master)](https://coveralls.io/github/HBNetwork/django-ultratenant?branch=master)
 
 [![Documentation Status](https://readthedocs.org/projects/django-ultratenant/badge/?version=latest)](https://django-ultratenant.readthedocs.io/en/latest/?version=latest)
 
