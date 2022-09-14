@@ -21,16 +21,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: ./.github/workflows/python-app.yml@main
     - uses: actions/checkout@v3
     - name: Set up Python
       uses: actions/setup-python@v3
       with:
         python-version: '3.x'
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install build
+    - name: Install test dependencies
+      run: python -m pip install --upgrade pip ".[test]"
+    - name: Test with pytest
+      run: pytest
+    - name: Install build dependencies
+      run: python -m pip install --upgrade pip build
     - name: Build package
       run: python -m build
     - name: Publish package
