@@ -63,6 +63,9 @@ name = "ultratenant"
 include = ["LICENSE", "README.md"]
 exclude = ["contrib", "docs", "pytest.ini", "tox.ini", "test*"]
 
+[tool.pytest.ini_options]
+python_files = ["tests.py", "test_*.py", "*_tests.py"]
+
 [tool.tox]
 legacy_tox_ini = """
 [tox]
