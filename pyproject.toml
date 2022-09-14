@@ -1,0 +1,67 @@
+[project]
+name = "django-ultratenant"
+version = "0.0.2"
+description = "One django library to rule all multi-tenant."
+readme = "README.md"
+requires-python = ">=3.7"
+license = {file = "LICENSE"}
+keywords = ["ultratenant", "django", "tenant id", "multi-database", "multi-tenant", "multi-schema", "postgres"]
+authors = [
+  {name="Lucas Cezimbra", email="lucas@cezimbra.tec.br"},
+]
+maintainers = [{name="HBNetwork"}]
+classifiers = [
+  "Development Status :: 2 - Pre-Alpha",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Natural Language :: English",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.6",
+  "Programming Language :: Python :: 3.7",
+  "Programming Language :: Python :: 3.8",
+  "Framework :: Django",
+  "Framework :: Django :: 3",
+  "Framework :: Django :: 3.2",
+]
+
+dependencies = [
+  "django>=3.2.7",
+  "dj-database-url==1.0.0",
+]
+
+[project.optional-dependencies]
+test = [
+  "pytest < 5.0.0",
+  "pytest-cov[all]",
+  "coverage==6.4.2",
+  "coveralls==3.3.1",
+  "flake8==5.0.0",
+  "pre-commit==2.20.0",
+  "pytest==7.1.2",
+  "pytest-cov==3.0.0",
+  "pytest-django==4.5.2",
+  "pytest-mock==3.8.2",
+  "python-decouple==3.6",
+  "tox==3.25.1",
+]
+build = [
+  "flit>=3.4"
+]
+
+[build-system]
+requires = ["flit_core>=3.4,<4"]
+build-backend = "flit_core.buildapi"
+
+[tool.flit.module]
+name = "ultratenant"
+
+[tool.flit.sdist]
+include = ["LICENSE", "README.md"]
+exclude = ["contrib", "docs", "pytest.ini", "tox.ini", "test*"]
+
+
+[project.urls]
+#homepage = "https://github.com/HBN3tw0rk/django-ultratenant"
+documentation = "https://github.com/HBN3tw0rk/django-ultratenant/README.md"
+repository = "https://github.com/HBN3tw0rk/django-ultratenant"
+#changelog = "https://github.com/HBN3tw0rk/django-ultratenant/CHANGELOG.md"
