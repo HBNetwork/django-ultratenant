@@ -1,3 +1,4 @@
+from django.apps import apps
 from django.db import models
 
 from ultratenant.threadlocal import TENANTLOCAL
@@ -33,6 +34,11 @@ def TenantAwareFactory(tenant_model):
 
         class Meta:
             abstract = True
+
+        def save(self, *args, **kwargs):
+            Tenant = apps.get_model(tenant_model)
+            self.tenant = Tenant.objects.get(key=TENANTLOCAL.tenant)
+            super().save(*args, **kwargs)
 
     return TenantAwareAbstract
 
