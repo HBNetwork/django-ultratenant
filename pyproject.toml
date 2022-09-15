@@ -24,6 +24,12 @@ classifiers = [
   "Framework :: Django :: 3.2",
 ]
 
+[project.urls]
+#homepage = "https://github.com/HBNetwork/django-ultratenant"
+documentation = "https://github.com/HBNetwork/django-ultratenant/README.md"
+repository = "https://github.com/HBNetwork/django-ultratenant"
+#changelog = "https://github.com/HBNetwork/django-ultratenant/CHANGELOG.md"
+
 dependencies = [
   "django>=3.2.7",
   "dj-database-url==1.0.0",
@@ -33,6 +39,7 @@ dependencies = [
 test = [
   "coverage",
   "coveralls",
+  "dj_database_url",
   "flake8",
   "pre-commit",
   "pytest",
@@ -57,9 +64,35 @@ name = "ultratenant"
 include = ["LICENSE", "README.md"]
 exclude = ["contrib", "docs", "pytest.ini", "tox.ini", "test*"]
 
+[tool.pytest.ini_options]
+python_files = ["tests.py", "test_*.py", "*_tests.py"]
 
-[project.urls]
-#homepage = "https://github.com/HBNetwork/django-ultratenant"
-documentation = "https://github.com/HBNetwork/django-ultratenant/README.md"
-repository = "https://github.com/HBNetwork/django-ultratenant"
-#changelog = "https://github.com/HBNetwork/django-ultratenant/CHANGELOG.md"
+[tool.tox]
+legacy_tox_ini = """
+[tox]
+envlist = py36, py37, py38, flake8
+
+[travis]
+python =
+    3.8: py38
+    3.7: py37
+    3.6: py36
+
+[testenv:flake8]
+basepython = python
+deps = flake8
+commands = flake8 ultratenant tests
+
+[testenv]
+setenv =
+    PYTHONPATH = {toxinidir}
+deps =
+    -r{toxinidir}/requirements_dev.txt
+; If you want to make tox run the tests with the same versions, create a
+; requirements.txt with the pinned versions and uncomment the following line:
+;     -r{toxinidir}/requirements.txt
+commands =
+    pip install -U pip
+    pytest --basetemp={envtmpdir}
+
+"""
