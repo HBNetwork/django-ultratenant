@@ -1,38 +1,132 @@
 # Django Ultratenant
 
-## Pitch (Portuguese)
+Installation info of the django-ultratenant
 
-- Part 1:
-    <https://www.loom.com/share/a90948958c184a0fb64868bbb0230a28>
-- Part 2:
-    <https://www.loom.com/share/52fd66b6f5a047f88a9fed56c1cf70d1>
+PyPI name: ***django-ultratenant***
+<https://pypi.org/project/django-ultratenant/>
+
+**Pythons** >=3.7
+
+**Operating systems**: Linux, Windows, OSX, Unix
+
+**Requirements:** dj-database-url, django*
+
+**Installers**: pip
+
+**Code repository**: <https://github.com/HBNetwork/django-ultratenant>
+
+## Pitch about the main idea of the project (Portuguese)
+Context of the origin of the library proposal
+
+- [Video Part 1](https://www.loom.com/share/a90948958c184a0fb64868bbb0230a28)
+- [Video Part 2:](https://www.loom.com/share/52fd66b6f5a047f88a9fed56c1cf70d1)
 
 ## What is
+This library makes it possible to use tenant strategies in a django project.
 
-- Django multi-tenant library that implements diferent approaches
+In a multi-tenant architecture, multiple instances of an application share the environment. This architecture is able to work because each tenant is physically integrated but logically separate; which means that a single instance of the software will run on a server and then service multiple tenants (clients).
+
+The dango ultratenant library that implements diferent approaches.
+
+### Type of the Strategies (Approaches)
+- multi-db
+- multi-schema
+- tenant-id
+
+#### What is multi-db?
+- Support multiple databases. Suported sqllite and postgresdb.
+
+#### What is multi-schema?
+
+#### What is tenant-id?
+- Supported URL approaches: subdomain and path
+    - tenant.url.com
+    - url.com/tenant/admin/
+
+## Objectives
+- In a django project implemented diferent approaches based of the bussiness core
 
 - Simple API with minimal setup
 
 - Transparent for the application
 
-- Supported isolations approaches:
-    - multi-db
-    - multi-schema
-    - tenant-id
+- Supported isolations approaches (multi-db, multi-schema, tenant-id)
 
-- Supported URL approaches: subdomain and path
-    - tenant.url.com
-    - url.com/tenant/admin/
+## How to Use
 
-- Support multiple databases
+### Installation
 
-- Good documentation
+``` bash
+pip install django-ultratenant
+```
 
-## Contributing
+### Configuration
+
+In the **settings.py** file, install the app that corresponds to the chosen strategy:
+``` bash
+...
+    INSTALLED_APPS=["test_project.singledb", "test_project.multidb"],
+...
+```
+
+Put the information the created databases:
+``` bash
+...
+     DATABASES={
+            "default": config("DATABASE_URL", default="sqlite://:memory:", cast=dburl),
+            "t1": config("DATABASE_URL", default="sqlite://:memory:", cast=dburl),
+            "t2": config("DATABASE_URL", default="sqlite://:memory:", cast=dburl),
+        },
+...
+```
+
+### API Multi-db
+
+``` bash
+...
+    # settings.py
+    from ultratenant.multidb import Databases
+    ...
+    MIDDLEWARE = [
+        ...
+        'ultratenant.path.Middleware',
+    ]
+    ...
+    DATABASES = Databases(config('DATABASE_URL', cast=dburl))
+    DATABASE_ROUTERS = ['ultratenant.multidb.Router']
+...
+```
+
+set the urls depending on the chosen strategies
+``` bash
+...
+    # urls.py
+    ...
+    from ultimate_tenants.urls import tenants_path
+
+    urlpatterns = tenants_path([
+        path('admin/', admin.site.urls),
+        path('', index, name='index'),
+    ])
+
+    # url.com/tenant/admin
+...
+```
+
+## Contributors
+HBNetwork
+
+HBNetwork is a community of python programmers from Brazil established within the Dev Senior Passport.
 
 ### Rules to contribute
 
-#### Clone the code
+- Your contribution is welcome.
+
+- Setup your development environment and select issues.
+
+## Contributing
+
+### Clone the code
 
 ```bash
 git clone https://github.com/HBNetwork/django-ultratenant
@@ -48,7 +142,7 @@ cd django-ultratenant
 git checkout main
 ```
 
-#### Setup the project
+### Setup the project
 
 ```bash
 python -m venv .venv
@@ -60,39 +154,19 @@ pre-commit autoupdate
 pytest
 ```
 
-#### Create a new branch
+### Create a new branch
 
 ```bash
 git fetch origin
 git checkout -b task/branch-name-you-work-issue
 ```
 
-
-
-
-#### Create a pull request to the branch *main*
+### Create a pull request to the branch *main*
 
 
 [![PyPI](https://img.shields.io/pypi/v/django-ultratenant.svg)](https://pypi.python.org/pypi/django-ultratenant)
 
 [![Coverage Status](https://coveralls.io/repos/github/HBNetwork/django-ultratenant/badge.svg?branch=master)](https://coveralls.io/github/HBNetwork/django-ultratenant?branch=master)
-
-[![Documentation Status](https://readthedocs.org/projects/django-ultratenant/badge/?version=latest)](https://django-ultratenant.readthedocs.io/en/latest/?version=latest)
-
-Ultimate Django app for multi-tenant.
-
--   Documentation: <https://django-ultratenant.readthedocs.io>.
-
-## Installation
-
-``` bash
-pip install django-ultratenant
-```
-
-## How to Use
-
--   TODO
-
 
 
 ## Alternatives
@@ -102,12 +176,12 @@ pip install django-ultratenant
 -   <https://github.com/citusdata/django-multitenant> - only Postgres
     (with Citus extension)
 
-# Base projects
+## Base projects
 
 -   <https://github.com/henriquebastos/pds-multi-tenant/>
 -   <https://github.com/eli-junior/djangoDefault/>
 
-# MVP
+## MVP
 
 -   setup and pip
 
@@ -119,39 +193,7 @@ pip install django-ultratenant
 
 -   documetation about how customize manage.py
 
-
-
-# API
-
-```python
-# settings.py
-from ultratenant.multidb import Databases
-...
-MIDDLEWARE = [
-    ...
-    'ultratenant.path.Middleware',
-]
-...
-DATABASES = Databases(config('DATABASE_URL', cast=dburl))
-DATABASE_ROUTERS = ['ultratenant.multidb.Router']
-```
-
-(maybe it won\'t be necessary)
-
-```python
-# urls.py
-...
-from ultimate_tenants.urls import tenants_path
-
-urlpatterns = tenants_path([
-    path('admin/', admin.site.urls),
-    path('', index, name='index'),
-])
-
-# url.com/tenant/admin
-```
-
-# Roadmap
+### Roadmap
 
 -   other databases supported by Django:
     [PostgreSQL](https://docs.djangoproject.com/en/4.0/ref/databases/#postgresql-notes),
@@ -167,14 +209,10 @@ urlpatterns = tenants_path([
 
 -   cookiecutter to create a new project
 
-## Changelog
-All notable changes to this project will be documented in this file.
-
-The format is based on [Keep a Changelog](https://keepachangelog.com/pt-BR/0.3.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
-
 ### [Unreleased]
 
+
 ### [0.0.1] - 2022-07-31
+
 #### Added
 - First release on PyPI.
