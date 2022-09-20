@@ -1,25 +1,25 @@
 # Django Ultratenant
-   
-Installation info of the django-ultratenant  
 
-PyPI name: ***django-ultratenant***  
-<https://pypi.org/project/django-ultratenant/>  
+Installation info of the django-ultratenant
 
-**Pythons** >=3.7   
+PyPI name: ***django-ultratenant***
+<https://pypi.org/project/django-ultratenant/>
 
-**Operating systems**: Linux, Windows, OSX, Unix  
+**Pythons** >=3.7
 
-**Requirements:** dj-database-url, django*   
+**Operating systems**: Linux, Windows, OSX, Unix
 
-**Installers**: pip  
+**Requirements:** dj-database-url, django*
 
-**Code repository**: <https://github.com/HBNetwork/django-ultratenant>  
+**Installers**: pip
 
-## Pitch about the main idea of the project (Portuguese)  
+**Code repository**: <https://github.com/HBNetwork/django-ultratenant>
+
+## Pitch about the main idea of the project (Portuguese)
 Context of the origin of the library proposal
 
-- [Video Part 1](https://www.loom.com/share/a90948958c184a0fb64868bbb0230a28)  
-- [Video Part 2:](https://www.loom.com/share/52fd66b6f5a047f88a9fed56c1cf70d1)  
+- [Video Part 1](https://www.loom.com/share/a90948958c184a0fb64868bbb0230a28)
+- [Video Part 2:](https://www.loom.com/share/52fd66b6f5a047f88a9fed56c1cf70d1)
 
 ## What is
 This library makes it possible to use tenant strategies in a django project.
@@ -28,23 +28,23 @@ In a multi-tenant architecture, multiple instances of an application share the e
 
 The dango ultratenant library that implements diferent approaches.
 
-### Type of the Strategies (Approaches)  
-- multi-db  
-- multi-schema  
-- tenant-id  
+### Type of the Strategies (Approaches)
+- multi-db
+- multi-schema
+- tenant-id
 
-#### What is multi-db?  
+#### What is multi-db?
 - Support multiple databases. Suported sqllite and postgresdb.
 
-#### What is multi-schema?  
+#### What is multi-schema?
 
-#### What is tenant-id?  
+#### What is tenant-id?
 - Supported URL approaches: subdomain and path
     - tenant.url.com
     - url.com/tenant/admin/
 
 ## Objectives
-- In a django project implemented diferent approaches based of the bussiness core  
+- In a django project implemented diferent approaches based of the bussiness core
 
 - Simple API with minimal setup
 
@@ -53,21 +53,21 @@ The dango ultratenant library that implements diferent approaches.
 - Supported isolations approaches (multi-db, multi-schema, tenant-id)
 
 ## How to Use
-  
+
 ### Installation
 
 ``` bash
 pip install django-ultratenant
 ```
 
-### Configuration  
+### Configuration
 
 In the **settings.py** file, install the app that corresponds to the chosen strategy:
 ``` bash
 ...
     INSTALLED_APPS=["test_project.singledb", "test_project.multidb"],
 ...
-```    
+```
 
 Put the information the created databases:
 ``` bash
@@ -78,11 +78,11 @@ Put the information the created databases:
             "t2": config("DATABASE_URL", default="sqlite://:memory:", cast=dburl),
         },
 ...
-```   
+```
 
-### API Multi-db   
-  
-``` bash 
+### API Multi-db
+
+``` bash
 ...
     # settings.py
     from ultratenant.multidb import Databases
@@ -95,34 +95,34 @@ Put the information the created databases:
     DATABASES = Databases(config('DATABASE_URL', cast=dburl))
     DATABASE_ROUTERS = ['ultratenant.multidb.Router']
 ...
-```   
+```
 
-set the urls depending on the chosen strategies  
+set the urls depending on the chosen strategies
 ``` bash
 ...
     # urls.py
     ...
     from ultimate_tenants.urls import tenants_path
-    
+
     urlpatterns = tenants_path([
         path('admin/', admin.site.urls),
         path('', index, name='index'),
     ])
-    
+
     # url.com/tenant/admin
 ...
-```   
+```
 
-## Contributors  
-HBNetwork   
+## Contributors
+HBNetwork
 
 HBNetwork is a community of python programmers from Brazil established within the Dev Senior Passport.
 
-### Rules to contribute  
+### Rules to contribute
 
-- Your contribution is welcome.  
+- Your contribution is welcome.
 
-- Setup your development environment and select issues. 
+- Setup your development environment and select issues.
 
 ## Contributing
 
