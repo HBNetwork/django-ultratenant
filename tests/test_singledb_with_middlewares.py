@@ -1,16 +1,20 @@
 from django.apps import apps
 from django.test import TestCase, modify_settings
 
+from ultratenant.threadlocal import TENANTLOCAL
+
 
 class TestSingledbWithMiddlewares(TestCase):
     def make_fixtures(self, t1_key, t2_key):
         Tenant = apps.get_model("singledb", "Tenant")
         MyModel = apps.get_model("singledb", "MyModel")
 
-        t1 = Tenant.objects.create(key=t1_key)
-        t2 = Tenant.objects.create(key=t2_key)
-        m1 = MyModel.objects.create(name="Arnaldinho", tenant=t1)
-        m2 = MyModel.objects.create(name="Boris", tenant=t2)
+        Tenant.objects.create(key=t1_key)
+        Tenant.objects.create(key=t2_key)
+        TENANTLOCAL.tenant = t1_key
+        m1 = MyModel.objects.create(name="Arnaldinho")
+        TENANTLOCAL.tenant = t2_key
+        m2 = MyModel.objects.create(name="Boris")
 
         return m1, m2
 
